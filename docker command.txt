@@ -1,0 +1,77 @@
+Docker Commands
+Clone the GitHub repo:
+
+git clone https://github.com/manikcloud/Docker-Certified-Associate.git
+Build the Docker image:
+
+cd Docker-Certified-Associate/1-basic-docker-commands/
+docker build -t varunmanik/httpd:latest .
+List images:
+
+docker images
+Run a Docker container:
+
+docker run -d -p 80:80 --name httpd-container varunmanik/httpd:latest
+List running containers:
+
+docker ps
+Execute a command inside a running container:
+
+docker exec httpd-container ps aux
+Pull an image from Docker Hub:
+
+docker pull varunmanik/httpd:latest
+
+Push an image to Docker Hub:
+
+docker login
+docker push varunmanik/httpd:latest
+Search for images on Docker Hub:
+
+docker search httpd
+
+Show Docker version information:
+docker version
+Display system-wide information:
+docker info
+Stop a running container:
+docker stop httpd-container
+Remove a container:
+docker rm httpd-container
+Remove an image:
+docker rmi varunmanik/httpd:latest
+Log out from Docker Hub:
+docker logout
+
+Docker Image 
+Docker Image for Custom HTTPD Server
+This Docker image is based on the varunmanik/httpd:cicd image and serves a custom index.html file.
+
+Dockerfile
+The Dockerfile is as follows:
+
+FROM varunmanik/httpd:cicd
+LABEL maintainer="Varun Manik"
+
+COPY ./index.html /usr/local/apache2/htdocs/
+
+EXPOSE 80
+Usage
+Build the Docker image:
+
+docker build -t my-custom-httpd .
+Run the Docker container:
+
+docker run -d -p 80:80 --name my-httpd my-custom-httpd
+Access the custom HTTPD server:
+
+Open your browser and visit http://localhost.
+
+Stopping the Container
+To stop the running container, execute the following command:
+
+docker stop my-httpd 
+Removing the Container
+To remove the stopped container, execute the following command:
+
+docker rm my-httpd
